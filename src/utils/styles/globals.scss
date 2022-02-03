@@ -25,3 +25,9 @@ a {
   background-color: #1d1d1d;
   padding: 50px;
 }
+
+.aligned-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
