@@ -7,6 +7,7 @@ const API_URL = 'http://localhost:3001/api';
 
 export const fetchMutualGuilds = async (context: GetServerSidePropsContext) => {
   const headers = validateCookies(context);
+  console.log(headers)
   if (!headers) return { redirect: { destination: '/' } };
   try {
     const { data: guilds } = await axios.get<Guild[]>(`${API_URL}/guilds`, {
@@ -18,4 +19,10 @@ export const fetchMutualGuilds = async (context: GetServerSidePropsContext) => {
     console.log(err);
     return { redirect: { destination: '/' } };
   }
+};
+
+export const fetchValidGuild = (id: string, headers: HeadersInit) => {
+  return fetch(`${API_URL}/guilds/${id}/permissions`, {
+    headers,
+  });
 };
