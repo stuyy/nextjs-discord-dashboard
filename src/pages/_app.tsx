@@ -1,9 +1,16 @@
+import { useState } from 'react';
+import { GuildContext } from '../utils/contexts/GuildContext';
+import { AppPropsWithLayout, Guild } from '../utils/types';
 import '../utils/styles/globals.scss';
-import { AppPropsWithLayout } from '../utils/types';
 
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+function MyApp({ Component, pageProps }: AppPropsWithLayout<any>) {
+  const [guild, setGuild] = useState<Guild>();
   const getLayout = Component.getLayout ?? ((page) => page);
-  return getLayout(<Component {...pageProps} />);
+  return (
+    <GuildContext.Provider value={{ guild, setGuild }}>
+      {getLayout(<Component {...pageProps} />)}
+    </GuildContext.Provider>
+  );
 }
 
 export default MyApp;

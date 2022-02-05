@@ -11,10 +11,10 @@ export type Guild = {
   features: string[];
 };
 
-export type NextPageWithLayout = NextPage & {
+export type NextPageWithLayout<T> = NextPage<T> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
-export type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
+export type AppPropsWithLayout<T> = AppProps & {
+  Component: NextPageWithLayout<T>;
 };
